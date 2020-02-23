@@ -1,0 +1,35 @@
+{
+  "npmScope": "fe-academy",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "examples": {
+      "tags": []
+    },
+    "examples-e2e": {
+      "tags": [],
+      "implicitDependencies": ["examples"]
+    },
+    "todos": {
+      "tags": []
+    },
+    "todos-e2e": {
+      "tags": [],
+      "implicitDependencies": ["todos"]
+    },
+    "todo-api": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
+    }
+  }
+}
