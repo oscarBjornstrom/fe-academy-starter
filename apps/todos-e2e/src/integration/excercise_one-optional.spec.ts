@@ -1,4 +1,4 @@
-import { addItem, getTodos } from '../support/app.po';
+import { addTodoItem, getTodos } from '../support/app.po';
 
 describe('TodoApp 1 optional excercise ', () => {
   beforeEach(() => {
@@ -6,8 +6,8 @@ describe('TodoApp 1 optional excercise ', () => {
   });
 
   it('should set the background of the items', () => {
-    addItem('some task', 'some desc');
-    addItem('another task', 'another description');
+    addTodoItem('some task', 'some desc');
+    addTodoItem('another task', 'another description');
     getTodos().should(t => expect(t.length).equal(2));
     getTodos()
       .first()

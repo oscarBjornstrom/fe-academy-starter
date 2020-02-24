@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'fe-academy-todo-item',
@@ -9,9 +10,15 @@ export class TodoItemComponent implements OnInit {
   @Input() task: string;
   @Input() index: number;
   
+  @Output() startEdit: EventEmitter<number> = new EventEmitter(); 
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  editTodo() {
+    this.startEdit.emit(this.index);
   }
 
 }

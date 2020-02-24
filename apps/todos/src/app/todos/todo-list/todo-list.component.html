@@ -4,11 +4,14 @@
       *ngFor="let todo of todos; let i = index"
       [task]="todo.task"
       [index]="i"
+      (startEdit)="goToEdit($event)"
     ></fe-academy-todo-item>
   </ul>
 </div>
 
-<fe-academy-add-todo (todoAdded)="addToList($event)"></fe-academy-add-todo>
+<button [routerLink]="['add']">Add new Todo</button>
+<router-outlet></router-outlet>
+
 
 <ng-template #noTodos>
   <p class="no-todos-text">no todos yet, time to get stuff done</p>

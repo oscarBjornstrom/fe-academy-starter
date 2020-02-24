@@ -11,7 +11,7 @@ describe('TodoApp exercise 1', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display a title', () => {
-    getGreeting().should(h => expect(h.length).equal(1));
+    getGreeting();
   });
 
   it('should display a text if no todos', () => {

@@ -7,6 +7,13 @@ import { TodoListComponent } from './todos/todo-list/todo-list.component';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { AddTodoComponent } from './todos/add-todo/add-todo.component';
 import { HighlightEvenDirective } from './directives/highlight-even.directive';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { HomeComponent } from './views/home/home.component';
+import { TodosComponent } from './views/todos/todos.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthComponent } from './views/auth/auth.component';
+import { HeaderComponent } from './core/header/header.component';
+import { TodoDetailsComponent } from './todos/todo-details/todo-details.component';
 
 @NgModule({
   declarations: [
@@ -14,9 +21,15 @@ import { HighlightEvenDirective } from './directives/highlight-even.directive';
     TodoListComponent,
     TodoItemComponent,
     AddTodoComponent,
-    HighlightEvenDirective
+    HighlightEvenDirective,
+    NotFoundComponent,
+    HomeComponent,
+    TodosComponent,
+    AuthComponent,
+    HeaderComponent,
+    TodoDetailsComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })

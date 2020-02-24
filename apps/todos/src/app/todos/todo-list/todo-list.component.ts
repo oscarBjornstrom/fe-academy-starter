@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo.model';
+import { TodoServiceService } from '../../services/todo-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'fe-academy-todo-list',
@@ -7,13 +9,16 @@ import { Todo } from '../todo.model';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[] = [
-  ];
-  constructor() {}
+  todos: Todo[] = this.todoService.todos;
+  constructor(
+    private todoService: TodoServiceService,
+    private router: Router,
+  
+  ) {}
 
   ngOnInit(): void {}
 
-  addToList(newTodo: Todo) {
-    this.todos.push(newTodo);
+  goToEdit(index) {
+    this.router.navigate(['details', index]);
   }
 }
