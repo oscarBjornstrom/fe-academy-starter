@@ -15,9 +15,6 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@fe-academy/data": ["libs/data/src/index.ts"]
-    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -30,6 +30,13 @@
     },
     "data": {
       "tags": []
+    },
+    "expenses": {
+      "tags": []
+    },
+    "expenses-e2e": {
+      "tags": [],
+      "implicitDependencies": ["expenses"]
     }
   }
 }

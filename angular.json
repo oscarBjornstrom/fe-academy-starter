@@ -6,7 +6,7 @@
       "schematics": {},
       "root": "apps/examples",
       "sourceRoot": "apps/examples/src",
-      "prefix": "fe-academy",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -120,32 +120,35 @@
         }
       }
     },
-    "todos": {
+    "expenses": {
       "projectType": "application",
       "schematics": {},
-      "root": "apps/todos",
-      "sourceRoot": "apps/todos/src",
-      "prefix": "fe-academy",
+      "root": "apps/expenses",
+      "sourceRoot": "apps/expenses/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/todos",
-            "index": "apps/todos/src/index.html",
-            "main": "apps/todos/src/main.ts",
-            "polyfills": "apps/todos/src/polyfills.ts",
-            "tsConfig": "apps/todos/tsconfig.app.json",
+            "outputPath": "dist/apps/expenses",
+            "index": "apps/expenses/src/index.html",
+            "main": "apps/expenses/src/main.ts",
+            "polyfills": "apps/expenses/src/polyfills.ts",
+            "tsConfig": "apps/expenses/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/todos/src/favicon.ico", "apps/todos/src/assets"],
-            "styles": ["apps/todos/src/styles.css"],
+            "assets": [
+              "apps/expenses/src/favicon.ico",
+              "apps/expenses/src/assets"
+            ],
+            "styles": ["apps/expenses/src/styles.css"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/todos/src/environments/environment.ts",
-                  "with": "apps/todos/src/environments/environment.prod.ts"
+                  "replace": "apps/expenses/src/environments/environment.ts",
+                  "with": "apps/expenses/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -174,146 +177,64 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "todos:build",
-            "proxyConfig": "apps/todos/proxy.conf.json"
+            "browserTarget": "expenses:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "todos:build:production"
+              "browserTarget": "expenses:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "todos:build"
+            "browserTarget": "expenses:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/todos/tsconfig.app.json",
-              "apps/todos/tsconfig.spec.json"
+              "apps/expenses/tsconfig.app.json",
+              "apps/expenses/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/todos/**"]
+            "exclude": ["**/node_modules/**", "!apps/expenses/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/todos/jest.config.js",
-            "tsConfig": "apps/todos/tsconfig.spec.json",
+            "jestConfig": "apps/expenses/jest.config.js",
+            "tsConfig": "apps/expenses/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "apps/todos/src/test-setup.ts"
+            "setupFile": "apps/expenses/src/test-setup.ts"
           }
         }
       }
     },
-    "todos-e2e": {
-      "root": "apps/todos-e2e",
-      "sourceRoot": "apps/todos-e2e/src",
+    "expenses-e2e": {
+      "root": "apps/expenses-e2e",
+      "sourceRoot": "apps/expenses-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/todos-e2e/cypress.json",
-            "tsConfig": "apps/todos-e2e/tsconfig.e2e.json",
-            "devServerTarget": "todos:serve"
+            "cypressConfig": "apps/expenses-e2e/cypress.json",
+            "tsConfig": "apps/expenses-e2e/tsconfig.e2e.json",
+            "devServerTarget": "expenses:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "todos:serve:production"
+              "devServerTarget": "expenses:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/todos-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/todos-e2e/**"]
-          }
-        }
-      }
-    },
-    "todo-api": {
-      "root": "apps/todo-api",
-      "sourceRoot": "apps/todo-api/src",
-      "projectType": "application",
-      "prefix": "todo-api",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "outputPath": "dist/apps/todo-api",
-            "main": "apps/todo-api/src/main.ts",
-            "tsConfig": "apps/todo-api/tsconfig.app.json",
-            "assets": ["apps/todo-api/src/assets"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/todo-api/src/environments/environment.ts",
-                  "with": "apps/todo-api/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "todo-api:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/todo-api/tsconfig.app.json",
-              "apps/todo-api/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/todo-api/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/todo-api/jest.config.js",
-            "tsConfig": "apps/todo-api/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "data": {
-      "root": "libs/data",
-      "sourceRoot": "libs/data/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/data/tsconfig.lib.json",
-              "libs/data/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/data/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/data/jest.config.js",
-            "tsConfig": "libs/data/tsconfig.spec.json",
-            "passWithNoTests": true
+            "tsConfig": ["apps/expenses-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/expenses-e2e/**"]
           }
         }
       }

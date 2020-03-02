@@ -4,12 +4,11 @@ import {
   getRouterLink,
   getNoItemsText,
   getNotFoundButton,
-  addTodoItem,
-  getTodos,
-  getEditButton,
-  getTaskInput,
   getShowMoreButton,
-  getBackButton
+  getBackButton,
+  addExpenseItem,
+  getExpenses,
+  addAdvancedExpense
 } from '../support/app.po';
 
 describe('Excercise two', () => {
@@ -25,7 +24,7 @@ describe('Excercise two', () => {
   it('should navigate to the different views', () => {
     getRouterLink('Login').click();
     cy.contains('auth');
-    getRouterLink('Todos').click();
+    getRouterLink('Expenses').click();
     getNoItemsText();
     cy.visit('asdas').contains('404');
   });
@@ -37,26 +36,30 @@ describe('Excercise two', () => {
     cy.contains('Welcome');
   });
 
-  it('should render the add todos form in a childroute and have the same functionality as previously', () => {
-    cy.visit('todos');
+  it('should render the add expense form in a childroute and have the same functionality as previously', () => {
+    cy.visit('expenses');
     cy.get('button')
       .contains('Add')
       .click();
 
-    addTodoItem('routed todo', 'cool description');
-    getTodos().should(l => expect(l.length).equal(1));
+    addExpenseItem('expense', '10');
+    getExpenses().should(l => expect(l.length).equal(1));
   });
 
-  it('should open the todd-details with prefilled values and then return to the previous page', () => {
-    cy.visit('todos');
+  it('should open the expense-details with prefilled values and then return to the previous page', () => {
+    cy.visit('expenses');
     cy.get('button')
       .contains('Add')
       .click();
+    addAdvancedExpense(
+      'Coffe',
+      5,
+      'https://cdn.pixabay.com/photo/2017/06/14/03/00/coffe-2400874_960_720.jpg'
+    );
 
-    addTodoItem('routed todo', 'cool description');
     getShowMoreButton().click();
 
-    cy.contains('cool description');
+    cy.get('img');
 
     getBackButton().click();
 
