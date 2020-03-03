@@ -1,0 +1,21 @@
+<p>{{'parent-component works!' | uppercase }}</p>
+
+<button (click)="toggleComponent()">Toggle the component</button>
+
+<button (click)="toggleHorse()">Toggle the style</button>
+
+<!-- <app-child-component *ngIf="renderComponent"></app-child-component> -->
+
+<ng-container *ngFor="let child of childItems; let i = index">
+
+        <app-child-component 
+            *ngIf="i %2 === 0"
+        [childText]="child"
+        [childIndex]="i"
+        ></app-child-component>
+</ng-container>
+
+
+<p [ngClass]="cssModifiers">Some fancy text</p>
+
+<input type="text" appRainbow>
