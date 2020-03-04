@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'examples';
+  textToBeShown = 'A cool text to be shown';
+
+  alertThisInTheParent(text) {
+    
+    alert(text);
+  }
 }
