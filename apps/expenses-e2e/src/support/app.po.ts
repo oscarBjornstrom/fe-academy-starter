@@ -13,6 +13,16 @@ export const getNotFoundButton = () => cy.get('button#not-found-button');
 export const getEditButton = () => cy.get('button.edit-button');
 export const getShowMoreButton = () => cy.get('button.show-more');
 export const getBackButton = () => cy.get('button.back-button');
+export const getUsernameField = () => cy.get('input#username-input');
+export const getPasswordField = () => cy.get('input#password-input');
+export const getLoginButton = () => cy.get('button#login-button');
+
+export const login = (username: string, password: string) => {
+  getUsernameField().type(username);
+  getPasswordField().type(password);
+  getLoginButton().click();
+};
+
 export const addExpenseItem = (expenseName, cost) => {
   getExpenseInput().type(expenseName);
   getCostInput().type(cost);
