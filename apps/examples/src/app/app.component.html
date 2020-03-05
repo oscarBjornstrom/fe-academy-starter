@@ -11,5 +11,21 @@
     <p>This was rendered using ng-content</p>
 </div>
 </app-example> -->
-
+<!-- 
 <app-parent-component ></app-parent-component>
+
+<input [(ngModel)]="testingTwoWay"/>
+<button (click)="logInputValue()">LogValue</button> -->
+
+<!-- <app-data-passing-one></app-data-passing-one>
+<app-data-passing-two></app-data-passing-two>     -->
+
+<nav>
+    <a routerLink="home" routerLinkActive="class1">Home</a>
+    <a [routerLink]="['todos']">Todos</a>
+</nav>
+
+
+
+
+<router-outlet></router-outlet>   

@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let item of listItems; let i = index">{{item}}</li>
+</ul>
+
+<p *ngIf="something; else elsetext;"></p>
+
+<ng-template #elsetext></ng-template> 
