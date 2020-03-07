@@ -177,7 +177,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "expenses:build"
+            "browserTarget": "expenses:build",
+            "proxyConfig": "apps/expenses/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -235,6 +236,61 @@
           "options": {
             "tsConfig": ["apps/expenses-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/expenses-e2e/**"]
+          }
+        }
+      }
+    },
+    "expenses-api": {
+      "root": "apps/expenses-api",
+      "sourceRoot": "apps/expenses-api/src",
+      "projectType": "application",
+      "prefix": "expenses-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/expenses-api",
+            "main": "apps/expenses-api/src/main.ts",
+            "tsConfig": "apps/expenses-api/tsconfig.app.json",
+            "assets": ["apps/expenses-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/expenses-api/src/environments/environment.ts",
+                  "with": "apps/expenses-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "expenses-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/expenses-api/tsconfig.app.json",
+              "apps/expenses-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/expenses-api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/expenses-api/jest.config.js",
+            "tsConfig": "apps/expenses-api/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

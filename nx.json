@@ -37,6 +37,9 @@
     "expenses-e2e": {
       "tags": [],
       "implicitDependencies": ["expenses"]
+    },
+    "expenses-api": {
+      "tags": []
     }
   }
 }
