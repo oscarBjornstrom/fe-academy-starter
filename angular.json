@@ -58,7 +58,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "examples:build"
+            "browserTarget": "examples:build",
+            "proxyConfig": "apps/examples/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -290,6 +291,61 @@
           "options": {
             "jestConfig": "apps/expenses-api/jest.config.js",
             "tsConfig": "apps/expenses-api/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "examples-api": {
+      "root": "apps/examples-api",
+      "sourceRoot": "apps/examples-api/src",
+      "projectType": "application",
+      "prefix": "examples-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/examples-api",
+            "main": "apps/examples-api/src/main.ts",
+            "tsConfig": "apps/examples-api/tsconfig.app.json",
+            "assets": ["apps/examples-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/examples-api/src/environments/environment.ts",
+                  "with": "apps/examples-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "examples-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/examples-api/tsconfig.app.json",
+              "apps/examples-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/examples-api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/examples-api/jest.config.js",
+            "tsConfig": "apps/examples-api/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }

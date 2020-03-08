@@ -40,6 +40,9 @@
     },
     "expenses-api": {
       "tags": []
+    },
+    "examples-api": {
+      "tags": []
     }
   }
 }

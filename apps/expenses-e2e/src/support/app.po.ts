@@ -10,12 +10,15 @@ export const getNoItemsText = () => cy.get('p.no-expenses-text');
 export const getRouterLinks = () => cy.get('a.router-link');
 export const getRouterLink = text => cy.get('a.router-link').contains(text);
 export const getNotFoundButton = () => cy.get('button#not-found-button');
-export const getEditButton = () => cy.get('button.edit-button');
 export const getShowMoreButton = () => cy.get('button.show-more');
 export const getBackButton = () => cy.get('button.back-button');
 export const getUsernameField = () => cy.get('input#username-input');
 export const getPasswordField = () => cy.get('input#password-input');
 export const getLoginButton = () => cy.get('button#login-button');
+export const getDeleteButton = () => cy.get('button.delete-expense');
+export const getEditButton = () => cy.get('button.edit-expense');
+export const getSpecificExpense = text =>
+  cy.get('li.expense-item').contains(text);
 
 export const login = (username: string, password: string) => {
   getUsernameField().type(username);

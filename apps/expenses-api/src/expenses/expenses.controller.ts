@@ -16,32 +16,29 @@ export class ExpensesController {
   constructor(private expenseService: ExpensesService) {}
   @Get()
   getAllExpenses(): Expense[] {
-    return this.expenseService.getAllExpenses();
+    return this.expenseService.expenses;
   }
 
   @Get(':id')
-  getExpenseById(@Param('id') id): Expense {
+  getExpenseById(@Param('id') id: string): Expense {
     return this.expenseService.getExpenseById(id);
   }
 
   @Post()
-  createNewExpense(@Body() createExpenseDto: CreateExpenseDto): string {
-    return `
-    Name: ${createExpenseDto.expense}
-    Cost: ${createExpenseDto.cost}
-    ImageUrl: ${createExpenseDto.imageUrl}  `;
+  createNewExpense(@Body() createExpenseDto: CreateExpenseDto): Expense {
+    return this.expenseService.addExpense(createExpenseDto);
   }
 
   @Put(':id')
   updateExpense(
     @Body() createExpenseDto: CreateExpenseDto,
-    @Param('id') id
+    @Param('id') id: string
   ): string {
-    return `Update expense ${id} with body  Name: ${createExpenseDto.expense} `;
+    return this.expenseService.updateExpenseById(id, createExpenseDto);
   }
 
   @Delete(':id')
   deleteExpense(@Param('id') id): string {
-    return `Delete  ${id}`;
+    return this.expenseService.deleteExpenseById(id);
   }
 }
