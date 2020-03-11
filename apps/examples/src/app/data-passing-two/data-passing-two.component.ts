@@ -8,6 +8,8 @@ import { DatapassingService } from '../datapassing.service';
 })
 export class DataPassingTwoComponent implements OnInit {
   listItems = this.dataPassing.items;
+
+  something = [];
   constructor(private dataPassing: DatapassingService) { }
 
   ngOnInit(): void {

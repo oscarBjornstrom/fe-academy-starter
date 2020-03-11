@@ -39,12 +39,13 @@ export class AppController {
 
   @Get('findByFilter')
   getTypeahead(@Query() query: { search: string }): string[] {
+    console.log(query);
     return this.appService.getFilteredItems(query.search);
   }
 
   @Get('alwaysError')
   iWillError() {
-    throw new Error();
+    throw new Error('error');
   }
 
   @Get('randomError')
