@@ -31,7 +31,7 @@ export class AppController {
   iWillError() {
     throw new Error();
   }
-  
+
   @Get('randomError')
   iWillErrorRandomly() {
     const error = Math.random() > 0.5;

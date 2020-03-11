@@ -16,14 +16,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { TodoListComponent } from './routing-examples/todos/todo-list/todo-list.component';
 import { TodoDetailComponent } from './routing-examples/todos/todo-detail/todo-detail.component';
 import { AddTodoComponent } from './routing-examples/todos/add-todo/add-todo.component';
-
+import { RxjsExamplesComponent } from './rxjs-examples/rxjs-examples.component';
+import { HttpExamplesComponent } from './http-examples/http-examples.component';
+import {HttpClientModule} from '@angular/common/http'
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent, ParentComponentComponent, ChildComponentComponent, RainbowDirective, DataPassingOneComponent, DataPassingTwoComponent, HomeComponent, NotFoundComponent, TodosComponent, TodoListComponent, TodoDetailComponent, AddTodoComponent],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  declarations: [AppComponent, ExampleComponent, ParentComponentComponent, ChildComponentComponent, RainbowDirective, DataPassingOneComponent, DataPassingTwoComponent, HomeComponent, NotFoundComponent, TodosComponent, TodoListComponent, TodoDetailComponent, AddTodoComponent, RxjsExamplesComponent, HttpExamplesComponent],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   providers: [DatapassingService],
   bootstrap: [AppComponent]
 })
