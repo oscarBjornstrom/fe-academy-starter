@@ -1,4 +1,13 @@
-import { Controller, Get, Query, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Param,
+  Post,
+  Body,
+  Put,
+  Delete
+} from '@nestjs/common';
 
 import { AppService } from './app.service';
 import { Todo } from './todo.interface';
@@ -8,10 +17,30 @@ import { CreateTodoDto } from './todo.dto';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-
   @Get()
   getAllTodos(): Todo[] {
     return this.appService.todos;
+  }
+
+  @Get('findByFilter')
+  getTypeahead() {
+    return this.appService.todos;
+  }
+
+  @Get('alwaysError')
+  iWillError() {
+    throw new Error();
+  }
+  
+  @Get('randomError')
+  iWillErrorRandomly() {
+    const error = Math.random() > 0.5;
+
+    if (error) {
+      throw new Error('Random error occured');
+    } else {
+      return 'success!';
+    }
   }
 
   @Get(':id')
@@ -35,26 +64,5 @@ export class AppController {
   @Delete(':id')
   deleteTodo(@Param('id') id): string {
     return this.appService.deleteTodoById(id);
-  }
-
-  @Get('findByFilter')
-  getTypeahead(@Query() query: { search: string }): string[] {
-    return this.appService.getFilteredItems(query.search);
-  }
-
-  @Get('alwaysError')
-  iWillError() {
-    throw new Error();
-  }
-
-  @Get('randomError')
-  iWillErrorRandomly() {
-    const error = Math.random() > 0.5;
-
-    if (error) {
-      throw new Error('Random error occured');
-    } else {
-      return 'success!';
-    }
   }
 }
